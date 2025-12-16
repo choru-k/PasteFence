@@ -4,27 +4,32 @@ import AppKit
 
 /// Integration tests for ClipboardService
 /// Tests clipboard read/write operations, edge cases, and concurrent access
-/// Note: Tests must run in Xcode (requires system clipboard access)
+/// Note: These tests require system clipboard access and are opt-in for `swift test`.
 final class ClipboardIntegrationTests: XCTestCase {
     var clipboardService: ClipboardService!
     var originalClipboardContent: String?
 
     // MARK: - Setup/Teardown
 
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+
+        guard ProcessInfo.processInfo.environment["PASTEFENCE_RUN_CLIPBOARD_TESTS"] == "1" else {
+            throw XCTSkip("Set PASTEFENCE_RUN_CLIPBOARD_TESTS=1 to run clipboard integration tests.")
+        }
+
         clipboardService = ClipboardService()
         // Save original clipboard to restore after test
         originalClipboardContent = NSPasteboard.general.string(forType: .string)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         // Restore original clipboard content
         if let original = originalClipboardContent {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(original, forType: .string)
         }
-        super.tearDown()
+        try super.tearDownWithError()
     }
 
     // MARK: - Basic Read/Write Tests

@@ -315,12 +315,12 @@ extension IntegrationTestHelpers {
         REDIS_URL=redis://:password@cache.example.com:6379
 
         # API Keys (test mode keys for CI)
-        OPENAI_API_KEY=sk-proj-example1234567890abcdefghijklmnopqrst
-        STRIPE_SECRET_KEY=sk_test_51N0example123456789012
-        GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        OPENAI_API_KEY=sk-1234567890abcdef1234567890abcdef1234567890abcdef
+        STRIPE_SECRET_KEY=sk_test_51N0example1234567890123
+        GITHUB_TOKEN=ghp_1234567890abcdef1234567890abcdef1234
 
         # AWS (example keys from AWS docs)
-        AWS_ACCESS_KEY_ID=AKIAEXAMPLEEXAMPLE1
+        AWS_ACCESS_KEY_ID=AKIAEXAMPLEEXAMPLE12
         AWS_SECRET_ACCESS_KEY=exampleXUtnFEMI/K7MDENG/bPxRfiCYexampleKEY
 
         # Slack (example webhook)
@@ -368,9 +368,9 @@ extension IntegrationTestHelpers {
     static let jsConfig = """
         const config = {
             api: {
-                openaiKey: "sk-proj-example1234567890abcdefghijklmnopqrst",
-                stripeKey: "sk_test_51N0example123456789012",
-                githubToken: "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                openaiKey: "sk-1234567890abcdef1234567890abcdef1234567890abcdef",
+                stripeKey: "sk_test_51N0example1234567890123",
+                githubToken: "ghp_1234567890abcdef1234567890abcdef1234"
             },
             database: {
                 url: "postgresql://user:pass@db.example.com:5432/mydb"
@@ -415,7 +415,7 @@ extension IntegrationTestHelpers {
               - name: Deploy
                 env:
                   AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
-                  STRIPE_KEY: sk_test_51N0example123456789012
+                  STRIPE_KEY: sk_test_51N0example1234567890123
                 run: ./deploy.sh
         """
 

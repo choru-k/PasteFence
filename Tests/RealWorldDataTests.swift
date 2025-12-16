@@ -173,7 +173,7 @@ final class RealWorldDataTests: XCTestCase {
               api-key: c2stMTIzNDU2Nzg5MGFiY2RlZjEyMzQ1Njc4OTBhYmNkZWYxMjM0NTY3ODkwYWJjZGVm
             stringData:
               admin-password: SuperSecretPassword123!
-              stripe-key: sk_test_51N0example123456789012
+              stripe-key: sk_test_51N0example1234567890123
             """
 
         let results = detector.detect(in: text)
@@ -228,9 +228,9 @@ final class RealWorldDataTests: XCTestCase {
             import Foundation
 
             struct Config {
-                static let openAIKey = "sk-proj-example1234567890abcdefghijklmnopqrst"
-                static let awsAccessKey = "AKIAEXAMPLEEXAMPLE1"
-                static let stripeKey = "sk_test_51N0example123456789012"
+                static let openAIKey = "sk-1234567890abcdef1234567890abcdef1234567890abcdef"
+                static let awsAccessKey = "AKIAEXAMPLEEXAMPLE12"
+                static let stripeKey = "sk_test_51N0example1234567890123"
 
                 static let adminEmail = "admin@myapp.com"
                 static let supportPhone = "555-123-4567"

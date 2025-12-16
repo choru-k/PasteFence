@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build (Release)
+        run: |
+          xcodebuild \
+            -project PasteFenceWrapper/PasteFenceWrapper.xcodeproj \
+            -scheme PasteFenceWrapper \
+            -configuration Release \
+            -derivedDataPath build \
+            -destination 'platform=macOS' \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Make scripts executable
+        run: chmod +x Scripts/distribute.sh Scripts/create_dmg.sh
+
+      - name: Create DMG and checksum
+        run: Scripts/distribute.sh build/Build/Products/Release/PasteFenceWrapper.app
+
+      - name: Publish release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.dmg
+            dist/*.dmg.sha256
+          generate_release_notes: true

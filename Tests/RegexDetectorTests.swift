@@ -208,7 +208,7 @@ final class RegexDetectorTests: XCTestCase {
 
     func testDetectsStripeLiveKey() {
         // Test mode key - GitHub won't flag sk_test_ keys
-        let text = "STRIPE_KEY=sk_test_51N0example123456789012"
+        let text = "STRIPE_KEY=sk_test_51N0example1234567890123"
         let results = detector.detect(in: text)
 
         XCTAssertTrue(results.contains { $0.type == .stripeKey })
@@ -223,7 +223,7 @@ final class RegexDetectorTests: XCTestCase {
 
     func testDetectsStripeRestrictedKey() {
         // Test mode key (rk_test_) for testing - GitHub won't flag test keys
-        let text = "rk_test_51N0example123456789012"
+        let text = "rk_test_51N0example1234567890123"
         let results = detector.detect(in: text)
 
         XCTAssertTrue(results.contains { $0.type == .stripeKey })
@@ -243,7 +243,7 @@ final class RegexDetectorTests: XCTestCase {
 
     func testDetectsTwilioAccountSID() {
         // FAKE_KEY for testing - not a real SID
-        let text = "TWILIO_SID=ACFAKE567890abcdef1234567890fake"
+        let text = "TWILIO_SID=AC0123456789abcdef0123456789abcdef"
         let results = detector.detect(in: text)
 
         XCTAssertTrue(results.contains { $0.type == .twilioKey })
@@ -251,7 +251,7 @@ final class RegexDetectorTests: XCTestCase {
 
     func testDetectsTwilioAPIKey() {
         // FAKE_KEY for testing - not a real API key
-        let text = "SKFAKE67890abcdef1234567890fakeee"
+        let text = "SKabcdef0123456789abcdef0123456789"
         let results = detector.detect(in: text)
 
         XCTAssertTrue(results.contains { $0.type == .twilioKey })
@@ -413,7 +413,7 @@ final class RegexDetectorTests: XCTestCase {
         let text = """
         Config:
         SSN: 123-45-6789
-        STRIPE_KEY=sk_test_51N0example123456789012
+        STRIPE_KEY=sk_test_51N0example1234567890123
         DATABASE_URL=postgresql://user:pass@localhost/db
         Webhook: https://hooks.example.com/services/TXXXXXXXX/BXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
         """
@@ -539,6 +539,3 @@ final class RegexDetectorTests: XCTestCase {
         XCTAssertTrue(results.contains { $0.type == .cryptoSeedPhrase })
     }
 }
-
-
-

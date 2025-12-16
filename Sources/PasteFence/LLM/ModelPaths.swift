@@ -14,10 +14,7 @@ enum ModelPaths {
 
     /// Application Support directory for PasteFence
     static var appSupport: URL {
-        let fm = FileManager.default
-        // swiftlint:disable:next force_unwrapping
-        let appSupportDir = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        return appSupportDir.appendingPathComponent("PasteFence", isDirectory: true)
+        AppSupportPaths.pasteFenceDirectory
     }
 
     /// Root models directory

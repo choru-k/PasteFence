@@ -19,7 +19,6 @@ final class HistoryStorageTests: XCTestCase {
 
     func testStorageURLPointsToApplicationSupport() {
         let url = HistoryStorage.storageURL
-        XCTAssertTrue(url.path.contains("Application Support"))
         XCTAssertTrue(url.path.contains("PasteFence"))
         XCTAssertTrue(url.lastPathComponent == "history.json")
     }

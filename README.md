@@ -1,5 +1,7 @@
 # PasteFence
 
+[![Release](https://github.com/choru-k/PasteFence/actions/workflows/release.yml/badge.svg)](https://github.com/choru-k/PasteFence/actions/workflows/release.yml)
+
 A macOS menu bar app that automatically masks sensitive information (PII) in clipboard text using local LLM inference. All processing happens on-device - your data never leaves your machine.
 
 ## Features
@@ -104,4 +106,4 @@ AppCoordinator (orchestrator)
 
 ## License
 
-MIT License
+GPL-3.0 License

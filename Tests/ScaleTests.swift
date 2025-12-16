@@ -419,7 +419,7 @@ final class ScaleTests: XCTestCase {
     func testOverlapResolutionLongerMatchWins() {
         // When confidence is equal, longer match should win
         // Test with two overlapping patterns of same confidence (test mode key)
-        let text = "Key: sk_test_51N0example123456789012"
+        let text = "Key: sk_test_51N0example1234567890123"
 
         let results = detector.detect(in: text)
 
@@ -428,7 +428,7 @@ final class ScaleTests: XCTestCase {
         XCTAssertEqual(stripeKeys.count, 1, "Should detect Stripe key")
 
         // Count total items matching this text region
-        let itemsContainingKey = results.filter { $0.text.contains("sk_live") }
+        let itemsContainingKey = results.filter { $0.text.contains("sk_test") }
         XCTAssertEqual(
             itemsContainingKey.count, 1,
             "Overlapping patterns should deduplicate to single item"

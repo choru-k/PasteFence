@@ -3,7 +3,11 @@ import Foundation
 
 /// Service for reading and writing to the system clipboard
 final class ClipboardService {
-    private let pasteboard = NSPasteboard.general
+    private let pasteboard: NSPasteboard
+
+    init(pasteboard: NSPasteboard = .general) {
+        self.pasteboard = pasteboard
+    }
 
     /// Get the current text content from clipboard
     func getText() -> String? {

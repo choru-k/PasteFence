@@ -24,8 +24,8 @@ public final class FileLogger: ErrorLogger, @unchecked Sendable {
 
     public init() {
         // Setup logs directory
-        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let appDir = appSupport.appendingPathComponent("PasteFence")
+        AppSupportPaths.ensurePasteFenceDirectoryExists()
+        let appDir = AppSupportPaths.pasteFenceDirectory
         self.logsDirectory = appDir.appendingPathComponent(logsDirectoryName)
 
         // Create directory if needed

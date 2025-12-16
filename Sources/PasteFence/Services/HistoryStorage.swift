@@ -6,22 +6,10 @@ struct HistoryStorage {
     // MARK: - Storage Location
 
     /// URL for the history JSON file in Application Support directory
-    static let storageURL: URL = {
-        let appSupport = FileManager.default.urls(
-            for: .applicationSupportDirectory,
-            in: .userDomainMask
-        ).first!
-
-        let appDir = appSupport.appendingPathComponent("PasteFence")
-
-        // Ensure directory exists
-        try? FileManager.default.createDirectory(
-            at: appDir,
-            withIntermediateDirectories: true
-        )
-
-        return appDir.appendingPathComponent("history.json")
-    }()
+    static var storageURL: URL {
+        AppSupportPaths.ensurePasteFenceDirectoryExists()
+        return AppSupportPaths.pasteFenceDirectory.appendingPathComponent("history.json")
+    }
 
     // MARK: - Save Operations
 
