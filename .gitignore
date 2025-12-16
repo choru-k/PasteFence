@@ -1,0 +1,26 @@
+# Build artifacts
+.build/
+build/
+DerivedData/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# SwiftPM
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
+*.xcuserstate
+
+# Serena/Claude working files
+.serena/
+claudedocs/
+
+# Xcode
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Plan files (development only)
+plan/
