@@ -1,7 +1,7 @@
 # PasteFence Makefile
 # Simplifies testing and build commands
 
-.PHONY: test test-full test-filter build clean resolve xcode help
+.PHONY: test test-full test-filter build clean resolve xcode help release
 
 # Default target
 .DEFAULT_GOAL := help
@@ -58,6 +58,22 @@ run: build
 	@echo "Running PasteFence..."
 	.build/release/PasteFence
 
+## Build release app and create DMG for distribution
+release:
+	@echo "Building release app..."
+	xcodebuild \
+		-project PasteFenceWrapper/PasteFenceWrapper.xcodeproj \
+		-scheme PasteFenceWrapper \
+		-configuration Release \
+		-derivedDataPath build \
+		-destination 'platform=macOS'
+	@echo "Creating DMG..."
+	chmod +x Scripts/distribute.sh Scripts/create_dmg.sh
+	Scripts/distribute.sh build/Build/Products/Release/PasteFenceWrapper.app
+	@echo ""
+	@echo "Release artifacts created in dist/"
+	@ls -la dist/
+
 # =============================================================================
 # Utilities
 # =============================================================================
@@ -93,6 +109,7 @@ help:
 	@echo "  make build             - Build release binary"
 	@echo "  make build-debug       - Build debug binary"
 	@echo "  make run               - Build and run"
+	@echo "  make release           - Build app and create DMG for distribution"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  make resolve           - Resolve dependencies"
