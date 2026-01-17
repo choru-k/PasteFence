@@ -6,25 +6,36 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		134D1C9F2EF63E3400F67129 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1C9E2EF63E3400F67129 /* KeyboardShortcuts */; };
+		134D1CA12EF63E3400F67129 /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CA02EF63E3400F67129 /* MLX */; };
+		134D1CA32EF63E3400F67129 /* MLXLinalg in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CA22EF63E3400F67129 /* MLXLinalg */; };
+		134D1CA52EF63E3400F67129 /* MLXNN in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CA42EF63E3400F67129 /* MLXNN */; };
+		134D1CA72EF63E3400F67129 /* MLXRandom in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CA62EF63E3400F67129 /* MLXRandom */; };
+		134D1CA92EF63E3400F67129 /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CA82EF63E3400F67129 /* MLXLLM */; };
+		134D1CAB2EF63E3400F67129 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CAA2EF63E3400F67129 /* MLXLMCommon */; };
+		134D1CAD2EF63E3400F67129 /* SettingsAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 134D1CAC2EF63E3400F67129 /* SettingsAccess */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		13C019632EE99D0900FAC2C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13C019422EE99BEA00FAC2C8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13C019492EE99BEA00FAC2C8;
-			remoteInfo = PasteFenceWrapper;
+			remoteInfo = PasteFence;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13C0194A2EE99BEA00FAC2C8 /* PasteFenceWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteFenceWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13C0194A2EE99BEA00FAC2C8 /* PasteFence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteFence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C0195D2EE99D0900FAC2C8 /* PasteFenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasteFenceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		13C0194C2EE99BEA00FAC2C8 /* PasteFenceWrapper */ = {
+		13C0194C2EE99BEA00FAC2C8 /* PasteFence */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = PasteFenceWrapper;
+			path = PasteFence;
 			sourceTree = "<group>";
 		};
 		13C0195E2EE99D0900FAC2C8 /* PasteFenceUITests */ = {
@@ -39,6 +50,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134D1CA92EF63E3400F67129 /* MLXLLM in Frameworks */,
+				134D1CAD2EF63E3400F67129 /* SettingsAccess in Frameworks */,
+				134D1CA12EF63E3400F67129 /* MLX in Frameworks */,
+				134D1CA32EF63E3400F67129 /* MLXLinalg in Frameworks */,
+				134D1CA52EF63E3400F67129 /* MLXNN in Frameworks */,
+				134D1CA72EF63E3400F67129 /* MLXRandom in Frameworks */,
+				134D1C9F2EF63E3400F67129 /* KeyboardShortcuts in Frameworks */,
+				134D1CAB2EF63E3400F67129 /* MLXLMCommon in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,11 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134D1C9D2EF63E3400F67129 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		13C019412EE99BEA00FAC2C8 = {
 			isa = PBXGroup;
 			children = (
-				13C0194C2EE99BEA00FAC2C8 /* PasteFenceWrapper */,
+				13C0194C2EE99BEA00FAC2C8 /* PasteFence */,
 				13C0195E2EE99D0900FAC2C8 /* PasteFenceUITests */,
+				134D1C9D2EF63E3400F67129 /* Frameworks */,
 				13C0194B2EE99BEA00FAC2C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,7 +91,7 @@
 		13C0194B2EE99BEA00FAC2C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13C0194A2EE99BEA00FAC2C8 /* PasteFenceWrapper.app */,
+				13C0194A2EE99BEA00FAC2C8 /* PasteFence.app */,
 				13C0195D2EE99D0900FAC2C8 /* PasteFenceUITests.xctest */,
 			);
 			name = Products;
@@ -73,9 +100,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13C019492EE99BEA00FAC2C8 /* PasteFenceWrapper */ = {
+		13C019492EE99BEA00FAC2C8 /* PasteFence */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13C019552EE99BEA00FAC2C8 /* Build configuration list for PBXNativeTarget "PasteFenceWrapper" */;
+			buildConfigurationList = 13C019552EE99BEA00FAC2C8 /* Build configuration list for PBXNativeTarget "PasteFence" */;
 			buildPhases = (
 				13C019462EE99BEA00FAC2C8 /* Sources */,
 				13C019472EE99BEA00FAC2C8 /* Frameworks */,
@@ -86,13 +113,21 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				13C0194C2EE99BEA00FAC2C8 /* PasteFenceWrapper */,
+				13C0194C2EE99BEA00FAC2C8 /* PasteFence */,
 			);
-			name = PasteFenceWrapper;
+			name = PasteFence;
 			packageProductDependencies = (
+				134D1C9E2EF63E3400F67129 /* KeyboardShortcuts */,
+				134D1CA02EF63E3400F67129 /* MLX */,
+				134D1CA22EF63E3400F67129 /* MLXLinalg */,
+				134D1CA42EF63E3400F67129 /* MLXNN */,
+				134D1CA62EF63E3400F67129 /* MLXRandom */,
+				134D1CA82EF63E3400F67129 /* MLXLLM */,
+				134D1CAA2EF63E3400F67129 /* MLXLMCommon */,
+				134D1CAC2EF63E3400F67129 /* SettingsAccess */,
 			);
-			productName = PasteFenceWrapper;
-			productReference = 13C0194A2EE99BEA00FAC2C8 /* PasteFenceWrapper.app */;
+			productName = PasteFence;
+			productReference = 13C0194A2EE99BEA00FAC2C8 /* PasteFence.app */;
 			productType = "com.apple.product-type.application";
 		};
 		13C0195C2EE99D0900FAC2C8 /* PasteFenceUITests */ = {
@@ -137,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 13C019452EE99BEA00FAC2C8 /* Build configuration list for PBXProject "PasteFenceWrapper" */;
+			buildConfigurationList = 13C019452EE99BEA00FAC2C8 /* Build configuration list for PBXProject "PasteFence" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -148,13 +183,17 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				13C019582EE99CCE00FAC2C8 /* XCLocalSwiftPackageReference ".." */,
+				134D1C992EF63D9E00F67129 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */,
+				134D1C9B2EF63DB800F67129 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
+				134D1C9C2EF63DC500F67129 /* XCRemoteSwiftPackageReference "SettingsAccess" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 13C0194B2EE99BEA00FAC2C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13C019492EE99BEA00FAC2C8 /* PasteFenceWrapper */,
+				13C019492EE99BEA00FAC2C8 /* PasteFence */,
 				13C0195C2EE99D0900FAC2C8 /* PasteFenceUITests */,
 			);
 		};
@@ -197,7 +236,7 @@
 /* Begin PBXTargetDependency section */
 		13C019642EE99D0900FAC2C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13C019492EE99BEA00FAC2C8 /* PasteFenceWrapper */;
+			target = 13C019492EE99BEA00FAC2C8 /* PasteFence */;
 			targetProxy = 13C019632EE99D0900FAC2C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -326,10 +365,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PasteFence/PasteFence.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
+				DEVELOPMENT_TEAM = ESURPGU29C;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -338,9 +381,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pastefence.PasteFenceWrapper;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choru.PasteFence;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -356,10 +400,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PasteFence/PasteFence.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
+				DEVELOPMENT_TEAM = ESURPGU29C;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -368,9 +416,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pastefence.PasteFenceWrapper;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choru.PasteFence;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -387,8 +436,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pastefence.PasteFenceUITests;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choru.PasteFenceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -396,7 +445,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = PasteFenceWrapper;
+				TEST_TARGET_NAME = PasteFence;
 			};
 			name = Debug;
 		};
@@ -406,8 +455,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pastefence.PasteFenceUITests;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choru.PasteFenceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -415,14 +464,14 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = PasteFenceWrapper;
+				TEST_TARGET_NAME = PasteFence;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13C019452EE99BEA00FAC2C8 /* Build configuration list for PBXProject "PasteFenceWrapper" */ = {
+		13C019452EE99BEA00FAC2C8 /* Build configuration list for PBXProject "PasteFence" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13C019532EE99BEA00FAC2C8 /* Debug */,
@@ -431,7 +480,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13C019552EE99BEA00FAC2C8 /* Build configuration list for PBXNativeTarget "PasteFenceWrapper" */ = {
+		13C019552EE99BEA00FAC2C8 /* Build configuration list for PBXNativeTarget "PasteFence" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13C019562EE99BEA00FAC2C8 /* Debug */,
@@ -454,9 +503,87 @@
 /* Begin XCLocalSwiftPackageReference section */
 		13C019582EE99CCE00FAC2C8 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "..";
+			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		134D1C992EF63D9E00F67129 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+		134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.29.1;
+			};
+		};
+		134D1C9B2EF63DB800F67129 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.29.2;
+			};
+		};
+		134D1C9C2EF63DC500F67129 /* XCRemoteSwiftPackageReference "SettingsAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/SettingsAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		134D1C9E2EF63E3400F67129 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C992EF63D9E00F67129 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+		134D1CA02EF63E3400F67129 /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		134D1CA22EF63E3400F67129 /* MLXLinalg */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXLinalg;
+		};
+		134D1CA42EF63E3400F67129 /* MLXNN */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXNN;
+		};
+		134D1CA62EF63E3400F67129 /* MLXRandom */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9A2EF63DAC00F67129 /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXRandom;
+		};
+		134D1CA82EF63E3400F67129 /* MLXLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9B2EF63DB800F67129 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLLM;
+		};
+		134D1CAA2EF63E3400F67129 /* MLXLMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9B2EF63DB800F67129 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLMCommon;
+		};
+		134D1CAC2EF63E3400F67129 /* SettingsAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134D1C9C2EF63DC500F67129 /* XCRemoteSwiftPackageReference "SettingsAccess" */;
+			productName = SettingsAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13C019422EE99BEA00FAC2C8 /* Project object */;
 }

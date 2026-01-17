@@ -1,5 +1,37 @@
 import Foundation
 
+/// Result of masking operation
+struct MaskingResult {
+    let originalText: String
+    let maskedText: String
+    let detectedItems: [DetectedItem]
+    let processingTime: TimeInterval
+}
+
+/// Represents a detected sensitive item
+struct DetectedItem: Identifiable, Hashable {
+    let id = UUID()
+    let text: String
+    let type: SensitiveType
+    let range: Range<String.Index>
+    let confidence: Double
+    let source: DetectionSource
+    let ruleName: String?  // Rule name for regex detections, nil for LLM
+
+    enum DetectionSource {
+        case regex
+        case llm
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: DetectedItem, rhs: DetectedItem) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
 /// Types of sensitive information
 enum SensitiveType: Codable, Equatable, Hashable {
     case email
@@ -181,26 +213,97 @@ enum SensitiveType: Codable, Equatable, Hashable {
     }
 }
 
-/// Represents a detected sensitive item
-struct DetectedItem: Identifiable, Hashable {
-    let id = UUID()
-    let text: String
-    let type: SensitiveType
-    let range: Range<String.Index>
-    let confidence: Double
-    let source: DetectionSource
-    let ruleName: String?  // Rule name for regex detections, nil for LLM
+/// Engine that combines regex and LLM detection for masking sensitive data
+actor MaskingEngine {
+    private let regexDetector: RegexDetector
+    private var llmDetector: LLMDetector?
 
-    enum DetectionSource {
-        case regex
-        case llm
+    /// Initialize with optional regex patterns manager
+    /// - Parameter patternsManager: Manager providing dynamic enabled patterns (nil uses hardcoded fallback)
+    /// - Note: Must be called on MainActor because RegexDetector caches patterns from the manager
+    @MainActor
+    init(patternsManager: RegexPatternsManager? = nil) {
+        self.regexDetector = RegexDetector(patternsManager: patternsManager)
+        // LLM detector will be initialized lazily when model is loaded
     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    /// Initialize LLM detector with specified model
+    func initializeLLM(modelPath: String) async throws {
+        self.llmDetector = try await LLMDetector(modelPath: modelPath)
     }
 
-    static func == (lhs: DetectedItem, rhs: DetectedItem) -> Bool {
-        lhs.id == rhs.id
+    /// Release the LLM detector (for memory pressure or model change)
+    func releaseLLM() {
+        self.llmDetector = nil
+    }
+
+    /// Check if LLM detector is initialized and ready
+    var isLLMReady: Bool {
+        llmDetector != nil
+    }
+
+    /// Mask sensitive information in the given text
+    func mask(text: String) async throws -> MaskingResult {
+        let startTime = Date()
+
+        // Stage 1: Regex detection (fast, deterministic)
+        var detectedItems = regexDetector.detect(in: text)
+        print("[MaskingEngine] Regex detected \(detectedItems.count) items")
+
+        // Stage 2: LLM detection (if available)
+        if let llmDetector = llmDetector {
+            do {
+                let llmItems = try await llmDetector.detect(in: text)
+                // Merge LLM results, avoiding duplicates
+                let merged = mergeDetections(regex: detectedItems, llm: llmItems)
+                detectedItems = merged
+                print("[MaskingEngine] LLM detected \(llmItems.count) additional items")
+            } catch {
+                print("[MaskingEngine] LLM detection failed: \(error), using regex only")
+            }
+        }
+
+        // Apply masking
+        let maskedText = applyMasking(to: text, items: detectedItems)
+
+        let processingTime = Date().timeIntervalSince(startTime)
+        print("[MaskingEngine] Processed in \(String(format: "%.2f", processingTime * 1000))ms")
+
+        return MaskingResult(
+            originalText: text,
+            maskedText: maskedText,
+            detectedItems: detectedItems,
+            processingTime: processingTime
+        )
+    }
+
+    private func mergeDetections(regex: [DetectedItem], llm: [DetectedItem]) -> [DetectedItem] {
+        var result = regex
+
+        for llmItem in llm {
+            // Check if this range overlaps with any regex detection
+            let overlaps = regex.contains { regexItem in
+                regexItem.range.overlaps(llmItem.range)
+            }
+
+            if !overlaps {
+                result.append(llmItem)
+            }
+        }
+
+        // Sort by position for consistent masking
+        return result.sorted { $0.range.lowerBound < $1.range.lowerBound }
+    }
+
+    private func applyMasking(to text: String, items: [DetectedItem]) -> String {
+        guard !items.isEmpty else { return text }
+
+        var result = text
+        // Apply in reverse order to preserve indices
+        for item in items.reversed() {
+            result.replaceSubrange(item.range, with: item.type.maskLabel)
+        }
+
+        return result
     }
 }

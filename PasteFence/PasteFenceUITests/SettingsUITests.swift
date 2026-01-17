@@ -33,8 +33,8 @@ final class SettingsUITests: XCTestCase {
         // Try to open Settings via menu bar
         let menuBar = app.menuBars.firstMatch
         if menuBar.exists {
-            // The app menu is named "PasteFenceWrapper" (not index 0 which is Apple menu)
-            let appMenu = menuBar.menuBarItems["PasteFenceWrapper"]
+            // The app menu is named "PasteFence" (not index 0 which is Apple menu)
+            let appMenu = menuBar.menuBarItems["PasteFence"]
             if appMenu.exists {
                 appMenu.click()
                 usleep(100_000)

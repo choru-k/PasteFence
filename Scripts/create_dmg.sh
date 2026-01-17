@@ -5,9 +5,10 @@ set -e
 
 APP_PATH="$1"
 OUTPUT_DIR="${2:-./dist}"
+VERSION_OVERRIDE="$3"
 
 if [ -z "$APP_PATH" ]; then
-    echo "Usage: create_dmg.sh /path/to/PasteFence.app [output_dir]"
+    echo "Usage: create_dmg.sh /path/to/PasteFence.app [output_dir] [version]"
     exit 1
 fi
 
@@ -16,9 +17,13 @@ if [ ! -d "$APP_PATH" ]; then
     exit 1
 fi
 
-# Get app name and version
+# Get app name and version (use override if provided, otherwise read from plist)
 APP_NAME=$(basename "$APP_PATH" .app)
-VERSION=$(defaults read "$APP_PATH/Contents/Info.plist" CFBundleShortVersionString 2>/dev/null || echo "1.0.0")
+if [ -n "$VERSION_OVERRIDE" ]; then
+    VERSION="$VERSION_OVERRIDE"
+else
+    VERSION=$(defaults read "$APP_PATH/Contents/Info.plist" CFBundleShortVersionString 2>/dev/null || echo "1.0.0")
+fi
 DMG_NAME="PasteFence-${VERSION}"
 DMG_PATH="$OUTPUT_DIR/${DMG_NAME}.dmg"
 TEMP_DMG="/tmp/${DMG_NAME}-temp.dmg"
@@ -29,8 +34,14 @@ echo "=== Creating DMG for $APP_NAME $VERSION ==="
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
-# Create staging directory
+# Clean up any leftover temp files from previous runs
+rm -f "$TEMP_DMG"
 rm -rf "$STAGING_DIR"
+
+# Also unmount any lingering mounts
+hdiutil detach "/Volumes/PasteFence" 2>/dev/null || true
+
+# Create staging directory
 mkdir -p "$STAGING_DIR"
 cp -R "$APP_PATH" "$STAGING_DIR/PasteFence.app"
 

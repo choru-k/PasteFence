@@ -429,8 +429,8 @@ struct DetectedItemRow: View {
         case .healthcareId: return .pink
         case .passportNumber: return .indigo
         case .cryptoSeedPhrase: return .yellow
-        // Custom regex patterns
-        case .custom: return .gray
+        // Custom user-defined types
+        case .custom: return .teal
         }
     }
 }

@@ -58,18 +58,24 @@ run: build
 	@echo "Running PasteFence..."
 	.build/release/PasteFence
 
-## Build release app and create DMG for distribution
+## Build release app, create DMG, and upload to GitHub Release
+## Usage: make release VERSION=1.0.1
 release:
-	@echo "Building release app..."
+ifndef VERSION
+	@echo "Error: VERSION is required"
+	@echo "Usage: make release VERSION=1.0.1"
+	@exit 1
+endif
+	@echo "Building release v$(VERSION)..."
 	xcodebuild \
-		-project PasteFenceWrapper/PasteFenceWrapper.xcodeproj \
-		-scheme PasteFenceWrapper \
+		-project PasteFence/PasteFence.xcodeproj \
+		-scheme PasteFence \
 		-configuration Release \
 		-derivedDataPath build \
 		-destination 'platform=macOS'
-	@echo "Creating DMG..."
+	@echo "Creating DMG and uploading to GitHub..."
 	chmod +x Scripts/distribute.sh Scripts/create_dmg.sh
-	Scripts/distribute.sh build/Build/Products/Release/PasteFenceWrapper.app
+	Scripts/distribute.sh build/Build/Products/Release/PasteFence.app $(VERSION)
 	@echo ""
 	@echo "Release artifacts created in dist/"
 	@ls -la dist/
@@ -93,7 +99,7 @@ clean:
 ## Open in Xcode
 xcode:
 	@echo "Opening in Xcode..."
-	open Package.swift
+	open PasteFence/PasteFence.xcodeproj
 
 ## Show help
 help:
@@ -109,7 +115,7 @@ help:
 	@echo "  make build             - Build release binary"
 	@echo "  make build-debug       - Build debug binary"
 	@echo "  make run               - Build and run"
-	@echo "  make release           - Build app and create DMG for distribution"
+	@echo "  make release VERSION=x.y.z - Build, create DMG, tag and upload to GitHub"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  make resolve           - Resolve dependencies"
