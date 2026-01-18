@@ -28,6 +28,16 @@ Or download directly from [GitHub Releases](https://github.com/choru-k/PasteFenc
 
 ---
 
+## Why PasteFence?
+
+We copy and paste everything into AI tools like ChatGPT every day. But sometimes we accidentally leak sensitive data — API keys, passwords, personal info — straight onto the public internet.
+
+Manually checking every paste is tedious. Finding and removing each sensitive item is even harder.
+
+**PasteFence catches it for you, before it leaves your Mac.**
+
+---
+
 ## How It Works
 
 <div align="center">
