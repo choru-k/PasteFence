@@ -82,7 +82,7 @@ Choose masking formats, configure hotkeys, and adjust detection sensitivity.
 
 | Category | Types |
 |----------|-------|
-| **Personal** | Email, phone numbers (international + Korean), Korean resident registration numbers (주민등록번호) |
+| **Personal** | Email, phone numbers (international formats), SSN |
 | **Financial** | Credit card numbers |
 | **Technical** | API keys (OpenAI, GitHub, AWS, Slack), JWT tokens, IP addresses, passwords, private keys (PEM) |
 
