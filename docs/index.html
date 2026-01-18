@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasteFence - Mask Sensitive Info Before Pasting</title>
+    <meta name="description" content="A macOS menu bar app that masks sensitive information in clipboard text using local LLM inference. Your data never leaves your Mac.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="../assets/icon.png">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">100% Local Processing</div>
+            <h1>PasteFence</h1>
+            <p class="tagline">Mask sensitive information before pasting.<br>All processing stays on your Mac.</p>
+
+            <div class="hero-image">
+                <img src="../assets/hero.png" alt="PasteFence Preview Window" loading="lazy">
+            </div>
+
+            <div class="install-box">
+                <code>brew tap choru-k/pastefence && brew install --cask pastefence</code>
+                <button class="copy-btn" onclick="copyInstall()" title="Copy to clipboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="hero-links">
+                <a href="https://github.com/choru-k/PasteFence/releases" class="btn btn-primary">Download Latest</a>
+                <a href="https://github.com/choru-k/PasteFence" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="workflow">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Copy</h3>
+                        <p>Copy text normally with <kbd>Cmd</kbd> + <kbd>C</kbd></p>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Mask</h3>
+                        <p>Press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></p>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Review</h3>
+                        <p>Preview what will be masked</p>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Paste</h3>
+                        <p>Approve and paste safely</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Private</h3>
+                    <p>All detection happens on-device using MLX-Swift. Your sensitive data never leaves your Mac.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Blazing Fast</h3>
+                    <p>Hybrid detection: fast regex catches common patterns (~1ms), while local LLM handles context.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Preview First</h3>
+                    <p>Review exactly what will be masked. Toggle individual items on or off before approving.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Customizable</h3>
+                    <p>Choose masking formats, configure hotkeys, and adjust detection sensitivity to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detection Section -->
+    <section class="detection">
+        <div class="container">
+            <h2>What It Detects</h2>
+            <div class="detection-grid">
+                <div class="detection-item">📧 Email addresses</div>
+                <div class="detection-item">📱 Phone numbers</div>
+                <div class="detection-item">💳 Credit cards</div>
+                <div class="detection-item">🔑 API keys</div>
+                <div class="detection-item">🎫 JWT tokens</div>
+                <div class="detection-item">🌐 IP addresses</div>
+                <div class="detection-item">🔐 Passwords</div>
+                <div class="detection-item">🆔 IDs & SSNs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots">
+        <div class="container">
+            <h2>Screenshots</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot">
+                    <img src="../assets/preview.png" alt="Preview Window" loading="lazy">
+                    <p>Preview Window</p>
+                </div>
+                <div class="screenshot">
+                    <img src="../assets/settings.png" alt="Settings" loading="lazy">
+                    <p>Model Settings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements">
+        <div class="container">
+            <h2>Requirements</h2>
+            <div class="req-grid">
+                <div class="req-item">
+                    <strong>macOS</strong>
+                    <span>14.0+ (Sonoma)</span>
+                </div>
+                <div class="req-item">
+                    <strong>Chip</strong>
+                    <span>Apple Silicon recommended</span>
+                </div>
+                <div class="req-item">
+                    <strong>RAM</strong>
+                    <span>8GB minimum</span>
+                </div>
+                <div class="req-item">
+                    <strong>Permissions</strong>
+                    <span>Accessibility</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install Section -->
+    <section class="install">
+        <div class="container">
+            <h2>Install with Homebrew</h2>
+            <div class="install-commands">
+                <div class="command-block">
+                    <span class="command-label">Install</span>
+                    <code>brew tap choru-k/pastefence && brew install --cask pastefence</code>
+                </div>
+                <div class="command-block">
+                    <span class="command-label">Update</span>
+                    <code>brew upgrade --cask pastefence</code>
+                </div>
+                <div class="command-block">
+                    <span class="command-label">Uninstall</span>
+                    <code>brew uninstall --cask pastefence</code>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/choru-k/PasteFence">GitHub</a>
+                <a href="https://github.com/choru-k/PasteFence/releases">Releases</a>
+                <a href="https://github.com/choru-k/PasteFence/issues">Report Issue</a>
+            </div>
+            <p class="footer-tagline">Made with ❤️ for privacy-conscious Mac users</p>
+            <p class="footer-copyright">© 2025 PasteFence. MIT License.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyInstall() {
+            const cmd = 'brew tap choru-k/pastefence && brew install --cask pastefence';
+            navigator.clipboard.writeText(cmd).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                setTimeout(() => {
+                    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

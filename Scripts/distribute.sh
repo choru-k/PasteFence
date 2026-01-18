@@ -155,6 +155,25 @@ fi
 echo "Pushing tag $TAG to origin..."
 git push origin "$TAG" 2>/dev/null || echo "Tag already exists on remote."
 
+# Generate release notes from git commits
+echo "Generating release notes..."
+PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+if [ -n "$PREV_TAG" ]; then
+    CHANGES=$(git log --pretty=format:"- %s" "$PREV_TAG"..HEAD --no-merges | head -20)
+else
+    CHANGES=$(git log --pretty=format:"- %s" -10 --no-merges)
+fi
+
+SHA256_VALUE=$(cat "$DMG_FILE.sha256" | awk '{print $1}')
+
+RELEASE_NOTES="## What's New
+
+$CHANGES
+
+## Checksum
+
+\`$SHA256_VALUE\`"
+
 # Create or update release
 echo "Uploading to GitHub release $TAG..."
 
@@ -166,20 +185,54 @@ else
     echo "Creating new release $TAG..."
     gh release create "$TAG" \
         --title "PasteFence $TAG" \
-        --notes "## Installation
-
-1. Download \`PasteFence-*.dmg\`
-2. Open the DMG and drag PasteFence to Applications
-3. Launch PasteFence from Applications
-
-> ✅ **Signed and Notarized** - This app is signed with an Apple Developer ID and notarized by Apple.
-
-## Checksums
-See \`.sha256\` file for verification." \
+        --notes "$RELEASE_NOTES" \
         "$DMG_FILE" "$DMG_FILE.sha256"
 fi
 
 echo "✅ Uploaded to: https://github.com/choru-k/PasteFence/releases/tag/$TAG"
+
+# Update Homebrew Tap
+echo ""
+echo "=== Step 9: Updating Homebrew Tap ==="
+
+# Look for homebrew-pastefence in common locations
+HOMEBREW_TAP_DIRS=(
+    "$HOME/Code/homebrew-pastefence"
+    "$HOME/Projects/homebrew-pastefence"
+    "$HOME/Developer/homebrew-pastefence"
+    "$(dirname "$PROJECT_DIR")/homebrew-pastefence"
+)
+
+HOMEBREW_TAP_DIR=""
+for dir in "${HOMEBREW_TAP_DIRS[@]}"; do
+    if [ -d "$dir" ] && [ -f "$dir/Casks/pastefence.rb" ]; then
+        HOMEBREW_TAP_DIR="$dir"
+        break
+    fi
+done
+
+if [ -n "$HOMEBREW_TAP_DIR" ]; then
+    echo "Found tap at: $HOMEBREW_TAP_DIR"
+    cd "$HOMEBREW_TAP_DIR"
+
+    # Update cask with new version and SHA256
+    sed -i '' "s/version \".*\"/version \"$VERSION\"/" Casks/pastefence.rb
+    sed -i '' "s/sha256 \".*\"/sha256 \"$SHA256_VALUE\"/" Casks/pastefence.rb
+
+    # Commit and push
+    git add Casks/pastefence.rb
+    git commit -m "Update to v$VERSION" || echo "No changes to commit"
+    git push origin main || git push origin master
+
+    echo "✅ Homebrew tap updated"
+    cd "$PROJECT_DIR"
+else
+    echo "⚠️  Homebrew tap not found. Update manually:"
+    echo "   1. Clone/create: https://github.com/choru-k/homebrew-pastefence"
+    echo "   2. Update Casks/pastefence.rb with:"
+    echo "      version \"$VERSION\""
+    echo "      sha256 \"$SHA256_VALUE\""
+fi
 
 # Summary
 echo ""
