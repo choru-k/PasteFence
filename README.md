@@ -41,7 +41,11 @@ Manually checking every paste is tedious. Finding and removing each sensitive it
 ## How It Works
 
 <div align="center">
-<img src="assets/hero.png" alt="PasteFence Workflow" width="700">
+
+[![Watch Demo](assets/hero.png)](https://choru-k.github.io/PasteFence/)
+
+**[▶️ Watch Demo](https://choru-k.github.io/PasteFence/)**
+
 </div>
 
 | Step | Action | Description |
