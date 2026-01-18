@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/license-GPL--3.0-green.svg)](LICENSE)
 [![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-optimized-orange.svg)](https://github.com/choru-k/PasteFence)
 
-[**Install**](#-installation) · [**Usage**](#-usage) · [**Screenshots**](#-screenshots) · [**Build**](#-build-from-source)
+[**Install**](#installation) · [**Usage**](#usage) · [**Screenshots**](#screenshots) · [**Build**](#build-from-source)
 
 </div>
 
