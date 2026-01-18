@@ -80,11 +80,17 @@ Choose masking formats, configure hotkeys, and adjust detection sensitivity.
 
 ## What It Detects
 
+**Built-in patterns** (toggle on/off individually):
+
 | Category | Types |
 |----------|-------|
-| **Personal** | Email, phone numbers (international formats), SSN |
+| **Personal** | Email, phone numbers, SSN, passport, healthcare IDs |
 | **Financial** | Credit card numbers |
-| **Technical** | API keys (OpenAI, GitHub, AWS, Slack), JWT tokens, IP addresses, passwords, private keys (PEM) |
+| **Technical** | API keys (OpenAI, GitHub, AWS, Slack), JWT tokens, IP addresses, passwords, private keys |
+
+**Plus:**
+- **Custom Rules**: Add your own detection patterns
+- **LLM Filtering**: Describe what to detect with a prompt — the local LLM handles the rest
 
 ---
 
